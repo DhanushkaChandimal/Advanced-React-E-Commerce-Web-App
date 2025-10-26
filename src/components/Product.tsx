@@ -1,4 +1,5 @@
 import type React from "react";
+import { useState } from "react";
 import type { Item } from "../types/types";
 import "../styles/product.css";
 import Card from "react-bootstrap/Card";
@@ -6,14 +7,19 @@ import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 
 const Product: React.FC<Item> = (itemDetails: Item) => {
+    const [imageError, setImageError] = useState(false);
+
+    const placeholderImage = 'https://placehold.co/250x170';
 
     return (
         <Card className="h-100 shadow-sm product-card">
             <div className="product-image-container">
                 <Card.Img 
                     variant="top" 
-                    src={itemDetails.image} 
+                    src={imageError ? placeholderImage : itemDetails.image}
                     className="product-image"
+                    onError={() => setImageError(true)}
+                    alt={itemDetails.title}
                 />
             </div>
             
