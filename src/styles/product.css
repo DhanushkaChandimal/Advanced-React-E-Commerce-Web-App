@@ -37,6 +37,15 @@
     padding: 20px;
 }
 
+/* Category Badge */
+.product-category-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: capitalize;
+}
+
 /* Product Title */
 .product-title {
     font-size: 1rem;

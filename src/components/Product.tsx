@@ -1,7 +1,8 @@
 import type React from "react";
-import Card from "react-bootstrap/Card";
 import type { Item } from "../types/types";
 import "../styles/product.css";
+import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
 
 const Product: React.FC<Item> = (itemDetails: Item) => {
     const truncatedDescription = itemDetails.description.length > 120 
@@ -23,6 +24,12 @@ const Product: React.FC<Item> = (itemDetails: Item) => {
             </div>
             
             <Card.Body className="d-flex flex-column product-body">
+                <div className="mb-2">
+                    <Badge className="product-category-badge">
+                        {itemDetails.category}
+                    </Badge>
+                </div>
+
                 <Card.Title className="mb-2 product-title">
                     {truncatedTitle}
                 </Card.Title>
