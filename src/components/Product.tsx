@@ -4,6 +4,13 @@ import type { Item } from "../types/types";
 import "../styles/product.css";
 
 const Product: React.FC<Item> = (itemDetails: Item) => {
+    const truncatedDescription = itemDetails.description.length > 120 
+        ? itemDetails.description.substring(0, 120) + "..."
+        : itemDetails.description;
+
+    const truncatedTitle = itemDetails.title.length > 50
+        ? itemDetails.title.substring(0, 50) + "..."
+        : itemDetails.title;
 
     return (
         <Card className="h-100 shadow-sm product-card">
@@ -17,11 +24,11 @@ const Product: React.FC<Item> = (itemDetails: Item) => {
             
             <Card.Body className="d-flex flex-column product-body">
                 <Card.Title className="mb-2 product-title">
-                    {itemDetails.title}
+                    {truncatedTitle}
                 </Card.Title>
 
                 <Card.Text className="flex-grow-1 mb-3 product-description">
-                    {itemDetails.description}
+                    {truncatedDescription}
                 </Card.Text>
 
                 <Card.Text className="mb-0 product-price">
