@@ -8,4 +8,10 @@ export const productService = {
         const response = await axios.get<Item[]>(`${API_BASE_URL}/products`);
         return response.data;
     },
+
+    getAllCategories: async (): Promise<string[]> => {
+        const response = await axios.get<string[]>(`${API_BASE_URL}/categories`);
+        console.log(response)
+        return response.data;
+    },
 };
