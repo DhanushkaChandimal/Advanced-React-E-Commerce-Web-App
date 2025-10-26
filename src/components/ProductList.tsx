@@ -85,6 +85,15 @@ const ProductList: React.FC = () => {
                             ))
                         )}
                     </div>
+
+                    {filteredProducts && (
+                        <div className="text-center mt-4">
+                            <small className="text-muted">
+                                Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
+                                {selectedCategory && ` in "${selectedCategory}"`}
+                            </small>
+                        </div>
+                    )}
                 </Col>
             </Row>
         </Container>
