@@ -3,6 +3,7 @@ import type { Item } from "../types/types";
 import "../styles/product.css";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
 
 const Product: React.FC<Item> = (itemDetails: Item) => {
     const truncatedDescription = itemDetails.description.length > 120 
@@ -45,9 +46,19 @@ const Product: React.FC<Item> = (itemDetails: Item) => {
                     {truncatedDescription}
                 </Card.Text>
 
-                <Card.Text className="mb-0 product-price">
-                    ${itemDetails.price.toFixed(2)}
-                </Card.Text>
+                <div className="d-flex justify-content-between align-items-center mt-auto">
+                    <Card.Text className="mb-0 product-price">
+                        ${itemDetails.price.toFixed(2)}
+                    </Card.Text>
+                    
+                    <Button 
+                        variant="primary"
+                        size="sm"
+                        className="add-to-cart-btn"
+                    >
+                        Add to Cart
+                    </Button>
+                </div>
             </Card.Body>
         </Card>
     );
