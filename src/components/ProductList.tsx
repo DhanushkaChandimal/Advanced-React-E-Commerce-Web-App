@@ -8,10 +8,11 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Alert from "react-bootstrap/Alert"
+import Spinner from "react-bootstrap/Spinner"
 
 const ProductList: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<string>("");
-    const { data: products } = useProducts();
+    const { data: products, isLoading: productsLoading, error: productsError } = useProducts();
     const { data: categories, isLoading: categoriesLoading } = useCategories();
 
     const filteredProducts = selectedCategory 
@@ -21,6 +22,26 @@ const ProductList: React.FC = () => {
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(event.target.value);
     };
+
+    if (productsLoading) {
+        return (
+            <Container className="text-center py-5">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading products...</span>
+                </Spinner>
+            </Container>
+        );
+    }
+
+    if (productsError) {
+        return (
+            <Container>
+                <Alert variant="danger" className="text-center">
+                    Error loading products. Please try again later.
+                </Alert>
+            </Container>
+        );
+    }
 
     return (
         <Container>
