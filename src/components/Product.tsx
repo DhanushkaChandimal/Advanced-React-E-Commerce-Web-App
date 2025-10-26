@@ -6,13 +6,6 @@ import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 
 const Product: React.FC<Item> = (itemDetails: Item) => {
-    const truncatedDescription = itemDetails.description.length > 120 
-        ? itemDetails.description.substring(0, 120) + "..."
-        : itemDetails.description;
-
-    const truncatedTitle = itemDetails.title.length > 50
-        ? itemDetails.title.substring(0, 50) + "..."
-        : itemDetails.title;
 
     return (
         <Card className="h-100 shadow-sm product-card">
@@ -32,7 +25,7 @@ const Product: React.FC<Item> = (itemDetails: Item) => {
                 </div>
 
                 <Card.Title className="mb-2 product-title">
-                    {truncatedTitle}
+                    {itemDetails.title}
                 </Card.Title>
 
                 <div className="mb-2 d-flex align-items-center">
@@ -42,8 +35,8 @@ const Product: React.FC<Item> = (itemDetails: Item) => {
                     </span>
                 </div>
 
-                <Card.Text className="flex-grow-1 mb-3 product-description">
-                    {truncatedDescription}
+                <Card.Text className="mb-3 product-description">
+                    {itemDetails.description}
                 </Card.Text>
 
                 <div className="d-flex justify-content-between align-items-center mt-auto">

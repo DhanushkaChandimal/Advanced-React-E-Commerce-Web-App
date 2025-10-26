@@ -1,6 +1,7 @@
 /* Product Card Container */
 .product-card {
     width: 280px;
+    height: 480px;
     transition: all 0.3s ease;
     border-radius: 12px;
     overflow: hidden;
@@ -35,6 +36,9 @@
 /* Card Body */
 .product-body {
     padding: 20px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Category Badge */
@@ -51,8 +55,13 @@
     font-size: 1rem;
     font-weight: 600;
     color: #2c3e50;
-    min-height: 48px;
+    height: 48px;
     line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 /* Rating Container */
@@ -70,6 +79,14 @@
     font-size: 0.85rem;
     color: #7f8c8d;
     line-height: 1.5;
+    height: 63px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
 }
 
 /* Product Price */
