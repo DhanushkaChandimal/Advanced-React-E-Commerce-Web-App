@@ -15,3 +15,11 @@ export const useCategories = () => {
         queryFn: productService.getAllCategories
     });
 };
+
+export const useCategory = (category: string) => {
+    return useQuery<Item[]>({
+        queryKey: ['category', category],
+        queryFn: () => productService.getProductsByCategory(category),
+        enabled: !!category
+    });
+};

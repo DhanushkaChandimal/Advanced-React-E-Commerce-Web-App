@@ -13,4 +13,9 @@ export const productService = {
         const response = await axios.get<string[]>(`${API_BASE_URL}/products/categories`);
         return response.data;
     },
+
+    getProductsByCategory: async (category: string): Promise<Item[]> => {
+        const response = await axios.get<Item[]>(`${API_BASE_URL}/products/category/${category}`);
+        return response.data;
+    },
 };

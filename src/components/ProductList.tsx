@@ -2,7 +2,7 @@ import type React from "react"
 import { useState } from "react"
 import Product from "./Product"
 import type { Item } from "../types/types"
-import { useProducts, useCategories } from "../hooks/useProducts"
+import { useProducts, useCategories, useCategory } from "../hooks/useProducts"
 import Form from "react-bootstrap/Form"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
@@ -14,9 +14,10 @@ const ProductList: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<string>("");
     const { data: products, isLoading: productsLoading, error: productsError } = useProducts();
     const { data: categories, isLoading: categoriesLoading } = useCategories();
+    const { data: categoryProducts} = useCategory(selectedCategory);
 
     const filteredProducts = selectedCategory 
-        ? products?.filter(product => product.category === selectedCategory)
+        ? categoryProducts
         : products;
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
