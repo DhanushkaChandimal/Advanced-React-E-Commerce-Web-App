@@ -55,6 +55,16 @@
     line-height: 1.4;
 }
 
+/* Rating Container */
+.product-rating {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.product-rating-star {
+    margin-right: 4px;
+}
+
 /* Product Description */
 .product-description {
     font-size: 0.85rem;

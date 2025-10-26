@@ -34,6 +34,13 @@ const Product: React.FC<Item> = (itemDetails: Item) => {
                     {truncatedTitle}
                 </Card.Title>
 
+                <div className="mb-2 d-flex align-items-center">
+                    <span className="product-rating-star">⭐</span>
+                    <span className="product-rating">
+                        {itemDetails.rating.rate.toFixed(1)}
+                    </span>
+                </div>
+
                 <Card.Text className="flex-grow-1 mb-3 product-description">
                     {truncatedDescription}
                 </Card.Text>
