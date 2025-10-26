@@ -10,8 +10,7 @@ export const productService = {
     },
 
     getAllCategories: async (): Promise<string[]> => {
-        const response = await axios.get<string[]>(`${API_BASE_URL}/categories`);
-        console.log(response)
+        const response = await axios.get<string[]>(`${API_BASE_URL}/products/categories`);
         return response.data;
     },
 };
