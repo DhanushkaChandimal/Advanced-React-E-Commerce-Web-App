@@ -1,12 +1,13 @@
 import './App.css'
 import ProductList from './components/ProductList'
+import Container from 'react-bootstrap/Container'
 
 function App() {
 
   return (
-    <div>
+    <Container className="py-4">
       <ProductList/>
-    </div>
+    </Container>
   )
 }
 

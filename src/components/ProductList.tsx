@@ -1,28 +1,18 @@
 import type React from "react"
 import Product from "./Product"
 import type { Item } from "../types/types"
-
-const dummyProduct: Item = {
-   id: 1,
-   title: "Product 1",
-   price: 22.95,
-   description: "Description of product 1",
-   category: "Clothing",
-   rate: 3.95,
-   image: "https://placehold.co/200x140"
-}
-
-const productList: Item[] = [dummyProduct, dummyProduct, dummyProduct]
+import { useProducts } from "../hooks/useProducts"
 
 const ProductList: React.FC = () => {
+    const { data: products } = useProducts();
 
     return (
         <div>
-            <h1 className="text-center">Products</h1>
-            <div className="d-flex flex-wrap gap-3">
-                {productList.map((item) => {
-                    return <Product key={item.id} {...item}/>
-                })}
+            <h1 className="text-center mb-4">Products</h1>
+            <div className="d-flex flex-wrap gap-3 justify-content-center">
+                {products?.map((item: Item) => (
+                    <Product key={item.id} {...item} />
+                ))}
             </div>
         </div>
     );
