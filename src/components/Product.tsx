@@ -1,16 +1,32 @@
 import type React from "react";
 import Card from "react-bootstrap/Card";
 import type { Item } from "../types/types";
+import "../styles/product.css";
 
 const Product: React.FC<Item> = (itemDetails: Item) => {
 
     return (
-        <Card>
-            <Card.Img variant="top" src={itemDetails.image} className="p-2"/>
-            <Card.Body>
-                <Card.Title>${itemDetails.price}</Card.Title>
-                <Card.Title className="title">{itemDetails.title}</Card.Title>
-                <Card.Text className="description">{itemDetails.description}</Card.Text>
+        <Card className="h-100 shadow-sm product-card">
+            <div className="product-image-container">
+                <Card.Img 
+                    variant="top" 
+                    src={itemDetails.image} 
+                    className="product-image"
+                />
+            </div>
+            
+            <Card.Body className="d-flex flex-column product-body">
+                <Card.Title className="mb-2 product-title">
+                    {itemDetails.title}
+                </Card.Title>
+
+                <Card.Text className="flex-grow-1 mb-3 product-description">
+                    {itemDetails.description}
+                </Card.Text>
+
+                <Card.Text className="mb-0 product-price">
+                    ${itemDetails.price.toFixed(2)}
+                </Card.Text>
             </Card.Body>
         </Card>
     );
