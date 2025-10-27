@@ -5,9 +5,12 @@ import "../styles/product.css";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
+import { useAppDispatch } from "../redux/hooks";
+import { addToCart } from "../redux/cartSlice";
 
 const Product: React.FC<Item> = (itemDetails: Item) => {
     const [imageError, setImageError] = useState(false);
+    const dispatch = useAppDispatch();
 
     const placeholderImage = 'https://placehold.co/250x170';
 
@@ -54,6 +57,7 @@ const Product: React.FC<Item> = (itemDetails: Item) => {
                         variant="primary"
                         size="sm"
                         className="add-to-cart-btn"
+                        onClick={() =>dispatch(addToCart(itemDetails))}
                     >
                         Add to Cart
                     </Button>
