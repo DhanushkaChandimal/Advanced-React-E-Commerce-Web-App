@@ -1,8 +1,12 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import '../styles/navbar.css';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../redux/store';
 
 const AppNavbar = () => {
+    const totalItems  = useSelector((state: RootState) => state.cart.totalItems);
+
     return (
         <div className='navbar-container'>
             <Navbar expand="lg" className="w-100">
@@ -17,7 +21,7 @@ const AppNavbar = () => {
             </Navbar>
             <Nav.Link href="/cart" className='d-flex align-items-center ms-2 mt-1 bg-primary text-white rounded px-2'>
                 <img src="../cart-icon.png" alt="Cart" className='cart-icon'/>
-                Cart {0}
+                Cart {totalItems}
             </Nav.Link>
         </div>
     );
