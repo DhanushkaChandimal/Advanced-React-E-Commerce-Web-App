@@ -33,6 +33,15 @@ const Cart = () => {
                             {items.map((item) => (
                                 <CartItem key={item.id} {...item}/>
                             ))}
+                            {items.length > 0 && (
+                                <Button 
+                                    variant="light" 
+                                    className="border-0 bg-light text-muted py-3 rounded-3"
+                                    onClick={()=>setShowClearModal(true)}
+                                >
+                                    🗑️ Clear Cart
+                                </Button>
+                            )}
                         </div>
                     </Col>
                     <Col lg={4}>
@@ -65,13 +74,6 @@ const Cart = () => {
                                 </div>
                             </Card.Body>
                         </Card>
-                    </Col>
-                    <Col>
-                        {items.length > 0 && (
-                            <Button variant="outline-danger" onClick={()=>setShowClearModal(true)}>
-                                Clear Cart
-                            </Button>
-                        )}
                     </Col>
                 </Row>
             )}
