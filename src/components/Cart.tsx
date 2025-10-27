@@ -12,7 +12,7 @@ const Cart = () => {
                 <p className="text-center align-self-center">No items in cart</p>
             ) : (
                 items.map((item) => (
-                    <li key={item.id} className="list-group-item"></li>
+                    <li key={item.id}>{item.title} | {item.quantity}</li>
                 ))
             )}
         </div>

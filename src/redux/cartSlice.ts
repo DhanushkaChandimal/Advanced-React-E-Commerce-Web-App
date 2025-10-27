@@ -11,10 +11,46 @@ interface CartState {
     totalPrice: number;
 }
 
+const loadCartFromSessionStorage = (): CartItem[] => {
+    try {
+        const cartData = sessionStorage.getItem('shopping_cart');
+        if (cartData) {
+            return JSON.parse(cartData);
+        }
+    } catch (error) {
+        console.error('Error loading cart from sessionStorage:', error);
+    }
+    return [];
+};
+
+const saveCartToSessionStorage = (items: CartItem[]): void => {
+    try {
+        sessionStorage.setItem('shopping_cart', JSON.stringify(items));
+    } catch (error) {
+        console.error('Error saving cart to sessionStorage:', error);
+    }
+};
+
+const calculateTotals = (items: CartItem[]) => {
+    let totalItems = 0;
+    let totalPrice = 0;
+    
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        totalItems += item.quantity;
+        totalPrice += (item.price * item.quantity);
+    }
+    
+    return { totalItems, totalPrice };
+};
+
+const savedItems = loadCartFromSessionStorage();
+const { totalItems, totalPrice } = calculateTotals(savedItems);
+
 const initialState: CartState = {
-    items: [],
-    totalItems: 0,
-    totalPrice: 0,
+    items: savedItems,
+    totalItems,
+    totalPrice,
 };
 
 const cartSlice = createSlice({
@@ -30,16 +66,11 @@ const cartSlice = createSlice({
                 state.items.push({ ...action.payload, quantity: 1 });
             }
 
-            let totalItems = 0;
-            let totalPrice = 0;
-
-            for (let i = 0; i < state.items.length; i++) {
-                const item = state.items[i];
-                totalItems = totalItems + item.quantity;
-                totalPrice = totalPrice + (item.price * item.quantity);
-            }
+            const { totalItems, totalPrice } = calculateTotals(state.items);
             state.totalItems = totalItems;
             state.totalPrice = totalPrice;
+            
+            saveCartToSessionStorage(state.items);
         },
     },
 });
