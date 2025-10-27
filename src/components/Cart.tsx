@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,9 +7,13 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import type { RootState } from '../redux/store';
 import CartItem from './CartItem';
+import ConfirmationModal from './ConfirmationModal';
+import { clearCart } from '../redux/cartSlice';
 
 const Cart = () => {
+    const dispatch = useDispatch();
     const { items, totalItems, totalPrice } = useSelector((state: RootState) => state.cart);
+    const [showClearModal, setShowClearModal] = useState(false);
     
     const TAX_RATE = 0.10;
     const taxAmount = totalPrice * TAX_RATE;
@@ -61,8 +66,26 @@ const Cart = () => {
                             </Card.Body>
                         </Card>
                     </Col>
+                    <Col>
+                        {items.length > 0 && (
+                            <Button variant="outline-danger" onClick={()=>setShowClearModal(true)}>
+                                Clear Cart
+                            </Button>
+                        )}
+                    </Col>
                 </Row>
             )}
+
+            <ConfirmationModal
+                show={showClearModal}
+                title="Clear Cart"
+                message="Are you sure you want to remove all items from your cart? This action cannot be undone."
+                onConfirm={()=>{
+                    dispatch(clearCart());
+                    setShowClearModal(false);
+                }}
+                onCancel={()=>setShowClearModal(false)}
+            />
         </Container>
     );
 };

@@ -93,8 +93,15 @@ const cartSlice = createSlice({
             
             saveCartToSessionStorage(state.items);
         },
+        clearCart: (state) => {
+            state.items = [];
+            state.totalItems = 0;
+            state.totalPrice = 0;
+            
+            saveCartToSessionStorage([]);
+        },
     },
 });
 
-export const { addToCart, updateQuantity, removeFromCart } = cartSlice.actions;
+export const { addToCart, updateQuantity, removeFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
