@@ -72,8 +72,20 @@ const cartSlice = createSlice({
             
             saveCartToSessionStorage(state.items);
         },
+        updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
+            const item = state.items.find(item => item.id === action.payload.id);
+            if (item && action.payload.quantity > 0) {
+                item.quantity = action.payload.quantity;
+                
+                const { totalItems, totalPrice } = calculateTotals(state.items);
+                state.totalItems = totalItems;
+                state.totalPrice = totalPrice;
+                
+                saveCartToSessionStorage(state.items);
+            }
+        },
     },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
