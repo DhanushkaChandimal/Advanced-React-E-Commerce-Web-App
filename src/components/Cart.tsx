@@ -8,16 +8,22 @@ import Button from 'react-bootstrap/Button';
 import type { RootState } from '../redux/store';
 import CartItem from './CartItem';
 import ConfirmationModal from './ConfirmationModal';
+import CheckoutSuccessModal from './CheckoutSuccessModal';
 import { clearCart } from '../redux/cartSlice';
 
 const Cart = () => {
     const dispatch = useDispatch();
     const { items, totalItems, totalPrice } = useSelector((state: RootState) => state.cart);
     const [showClearModal, setShowClearModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     
     const TAX_RATE = 0.10;
     const taxAmount = totalPrice * TAX_RATE;
     const finalAmount = totalPrice + taxAmount;
+
+    const handleCheckout = () => {
+        setShowSuccessModal(true);
+    };
 
     return (
         <Container className="py-4">
@@ -68,7 +74,11 @@ const Cart = () => {
                                     <span className="fw-bold text-primary fs-5">${finalAmount.toFixed(2)}</span>
                                 </div>
                                 <div className="d-grid">
-                                    <Button variant="success" size="lg">
+                                    <Button 
+                                        variant="success" 
+                                        size="lg"
+                                        onClick={handleCheckout}
+                                    >
                                         Proceed to Checkout
                                     </Button>
                                 </div>
@@ -87,6 +97,11 @@ const Cart = () => {
                     setShowClearModal(false);
                 }}
                 onCancel={()=>setShowClearModal(false)}
+            />
+
+            <CheckoutSuccessModal
+                show={showSuccessModal}
+                onClose={()=>setShowSuccessModal(false)}
             />
         </Container>
     );
