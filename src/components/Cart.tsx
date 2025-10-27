@@ -31,7 +31,7 @@ const Cart = () => {
                         </div>
                     </Col>
                     <Col lg={4}>
-                        <Card>
+                        <Card className="sticky-top">
                             <Card.Header>
                                 <h5 className="mb-0">Order Summary</h5>
                             </Card.Header>
