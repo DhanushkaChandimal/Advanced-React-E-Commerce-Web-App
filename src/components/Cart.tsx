@@ -42,7 +42,7 @@ const Cart = () => {
             orderNumber: orderNum
         });
         
-        // dispatch(clearCart());
+        dispatch(clearCart());
         setIsProcessing(false);
         setShowSuccessModal(true);
     };

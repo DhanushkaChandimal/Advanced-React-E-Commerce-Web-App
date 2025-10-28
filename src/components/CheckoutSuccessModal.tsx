@@ -39,7 +39,7 @@ const CheckoutSuccessModal: React.FC<CheckoutSuccessModalProps> = ({
             </Modal.Body>
             <Modal.Footer className="justify-content-center border-0">
                 <Button variant="success" onClick={onClose} size="lg">
-                    Back to Home
+                    Continue Shopping
                 </Button>
             </Modal.Footer>
         </Modal>
