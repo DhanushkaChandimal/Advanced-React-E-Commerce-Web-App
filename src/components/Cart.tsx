@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import type { RootState } from '../redux/store';
 import CartItem from './CartItem';
 import ConfirmationModal from './ConfirmationModal';
@@ -16,6 +17,7 @@ const Cart = () => {
     const { items, totalItems, totalPrice } = useSelector((state: RootState) => state.cart);
     const [showClearModal, setShowClearModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
     const [orderDetails, setOrderDetails] = useState({
         totalItems: 0,
         totalAmount: 0,
@@ -31,6 +33,8 @@ const Cart = () => {
     };
 
     const handleCheckout = async () => {
+        setIsProcessing(true);
+        await new Promise(resolve => setTimeout(resolve, 2000));
         const orderNum = generateOrderNumber();
         setOrderDetails({
             totalItems,
@@ -39,6 +43,7 @@ const Cart = () => {
         });
         
         // dispatch(clearCart());
+        setIsProcessing(false);
         setShowSuccessModal(true);
     };
 
@@ -95,8 +100,23 @@ const Cart = () => {
                                         variant="success" 
                                         size="lg"
                                         onClick={handleCheckout}
+                                        disabled={isProcessing}
                                     >
-                                        Proceed to Checkout
+                                        {isProcessing ? (
+                                            <>
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                    className="me-2"
+                                                />
+                                                Processing...
+                                            </>
+                                        ) : (
+                                            'Proceed to Checkout'
+                                        )}
                                     </Button>
                                 </div>
                             </Card.Body>
