@@ -26,11 +26,16 @@ const Cart = () => {
     const taxAmount = totalPrice * TAX_RATE;
     const finalAmount = totalPrice + taxAmount;
 
-    const handleCheckout = () => {
+    const generateOrderNumber = () => {
+        return 'ORD-' + Date.now().toString();
+    };
+
+    const handleCheckout = async () => {
+        const orderNum = generateOrderNumber();
         setOrderDetails({
             totalItems,
             totalAmount: finalAmount,
-            orderNumber: '001'
+            orderNumber: orderNum
         });
         
         // dispatch(clearCart());

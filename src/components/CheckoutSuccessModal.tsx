@@ -20,6 +20,9 @@ const CheckoutSuccessModal: React.FC<CheckoutSuccessModalProps> = ({
         <Modal show={show} onHide={onClose} centered size="lg">
             <Modal.Header className="bg-success text-white border-0">
                 <Modal.Title className="w-100 text-center">
+                    <div className="mb-2">
+                        <span style={{ fontSize: '3rem' }}>✅</span>
+                    </div>
                     Order Successful!
                 </Modal.Title>
             </Modal.Header>
@@ -30,6 +33,9 @@ const CheckoutSuccessModal: React.FC<CheckoutSuccessModalProps> = ({
                     <p className="mb-1"><strong>Items Purchased:</strong> {orderDetails.totalItems}</p>
                     <p className="mb-0"><strong>Total Amount:</strong> ${orderDetails.totalAmount.toFixed(2)}</p>
                 </div>
+                <p className="text-muted mb-0">
+                    Your order has been processed successfully. You will receive a confirmation email shortly.
+                </p>
             </Modal.Body>
             <Modal.Footer className="justify-content-center border-0">
                 <Button variant="success" onClick={onClose} size="lg">
