@@ -16,12 +16,24 @@ const Cart = () => {
     const { items, totalItems, totalPrice } = useSelector((state: RootState) => state.cart);
     const [showClearModal, setShowClearModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [orderDetails, setOrderDetails] = useState({
+        totalItems: 0,
+        totalAmount: 0,
+        orderNumber: ''
+    });
     
     const TAX_RATE = 0.10;
     const taxAmount = totalPrice * TAX_RATE;
     const finalAmount = totalPrice + taxAmount;
 
     const handleCheckout = () => {
+        setOrderDetails({
+            totalItems,
+            totalAmount: finalAmount,
+            orderNumber: '001'
+        });
+        
+        // dispatch(clearCart());
         setShowSuccessModal(true);
     };
 
@@ -101,6 +113,7 @@ const Cart = () => {
 
             <CheckoutSuccessModal
                 show={showSuccessModal}
+                orderDetails={orderDetails}
                 onClose={()=>setShowSuccessModal(false)}
             />
         </Container>
