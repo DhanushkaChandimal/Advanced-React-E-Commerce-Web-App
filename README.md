@@ -1,73 +1,113 @@
-# React + TypeScript + Vite
+# 🛒 Advanced React E-Commerce Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fully-featured e-commerce web application built with React, TypeScript, and Redux.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19.1.1-blue?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-blue?logo=typescript)
+![Redux](https://img.shields.io/badge/Redux%20Toolkit-2.9.2-purple?logo=redux)
+![React Query](https://img.shields.io/badge/React%20Query-5.90.5-orange)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.8-purple?logo=bootstrap)
+![Vite](https://img.shields.io/badge/Vite-7.1.7-green?logo=vite)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Features
 
-## React Compiler
+### 🏪 Core E-commerce Functionality
+- **Product Catalog**: Browse products with category filtering
+- **Shopping Cart**: Add, remove, and modify product quantities
+- **Checkout Process**: Complete simulated purchase flow
+- **Session Persistence**: Cart data persists across browser sessions
+- **Real Product Data**: Integration with FakeStore API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🎨 User Interface
+- **Modern UI Components**: Clean, professional interface
+- **Interactive Carousel**: Hero section with promotional content
+- **Product Cards**: Detailed product information with ratings
+- **Loading States**: Smooth user experience with loading indicators
 
-## Expanding the ESLint configuration
+### ⚡ Advanced Features
+- **State Management**: Redux Toolkit for global state
+- **Data Fetching**: React Query for server state management
+- **TypeScript**: Full type safety throughout the application
+- **Custom Hooks**: Reusable logic with custom React hooks
+- **Modal Confirmations**: User-friendly confirmation dialogs
+- **Error Handling**: Comprehensive error management
+- **Image Fallbacks**: Graceful handling of broken product images
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🏗️ Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/
+│   ├── Cart.tsx
+│   ├── CartItem.tsx
+│   ├── HomePage.tsx
+│   ├── NavBar.tsx
+│   ├── Product.tsx
+│   ├── ProductList.tsx
+│   ├── CheckoutSuccessModal.tsx
+│   └── ConfirmationModal.tsx
+├── hooks/
+│   └── useProducts.ts
+├── redux/
+│   ├── store.ts
+│   ├── cartSlice.ts
+│   └── hooks.ts
+├── services/
+│   └── productService.ts
+├── types/
+│   └── types.ts
+└── styles/
+    ├── cart.css
+    ├── home-page.css
+    ├── navbar.css
+    └── product.css
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
+- Node.js (version 16 or higher)
+- npm or yarn package manager
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/DhanushkaChandimal/Advanced-React-E-Commerce-Web-App.git
+   cd Advanced-React-E-Commerce-Web-App
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:5173` to view the application
+
+## 📋 Key Components
+
+### 🏠 HomePage
+- Hero carousel with promotional content
+- Featured products section
+
+### 🛍️ ProductList
+- Category-based product filtering
+- Grid layout with product cards
+
+### 🛒 Cart Management
+- Add/remove products with quantity controls
+- Session storage persistence
+- Price calculations with tax
+- Modern UI with confirmation modals
+
+### 💳 Checkout Process
+- Simulated checkout flow
+- Order confirmation with generated order numbers
+- Cart clearing after successful purchase
+- Success modal with order details
