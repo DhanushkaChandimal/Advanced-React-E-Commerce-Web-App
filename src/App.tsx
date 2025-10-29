@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container'
 import AppNavbar from './components/NavBar'
 import ProductList from './components/ProductList'
 import Cart from './components/Cart'
+import HomePage from './components/HomePage'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <Container className="py-4">
       <AppNavbar/>
       <Routes>
+        <Route path='/' element={<HomePage/>}/>
         <Route path='/products' element={<ProductList/>}/>
         <Route path='/cart' element={<Cart/>}/>
       </Routes>
